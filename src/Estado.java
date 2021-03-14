@@ -1,5 +1,3 @@
-package practica2021a;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +21,7 @@ public interface Estado {
 	public int coste(Estado e2);
 
 	/**
-	 * @return estimación heurística del estado actual al objetivo
+	 * @return estimaciï¿½n heurï¿½stica del estado actual al objetivo
 	 */
 	public int h(Estado objetivo);
 	
@@ -33,7 +31,7 @@ public interface Estado {
 	public void ver();
 	
 	/**
-	 * Los métodos equals y hashcode son necesarios para poder utilizar los estados
+	 * Los mï¿½todos equals y hashcode son necesarios para poder utilizar los estados
 	 * como clave en un HashMap
 	 */
 	public boolean equals(Object obj);	

@@ -1,5 +1,3 @@
-package practica2021a;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -34,12 +32,12 @@ public class AgenteA{
 			
 			if(e.equals(objetivo)){     //si es el objetivo, terminamos
 				return recuperaSolucion(n, arbol);
-			} else { //generamos los sucesores no repetidos y los añadimos al árbol y a abiertos
+			} else { //generamos los sucesores no repetidos y los aï¿½adimos al ï¿½rbol y a abiertos
 				int ge = n.getG();
 				for(Estado e2: e.calculaSucesores()){
 					int nuevoCoste = ge + e.coste(e2);
 					
-					if (!arbol.containsKey(e2)){	//nuevon nodo: simplemente añadimos e2 al árboly a abiertos
+					if (!arbol.containsKey(e2)){	//nuevon nodo: simplemente aï¿½adimos e2 al ï¿½rboly a abiertos
 						arbol.put(new Nodo(e2, nuevoCoste, n));
 						abiertos.offer(nuevoCoste + e2.h(objetivo),  e2);
 					} else {
@@ -58,7 +56,7 @@ public class AgenteA{
 			}//if-else
 		}//while
 		
-		return null;		 //la búsqueda termina con fracaso
+		return null;		 //la bï¿½squeda termina con fracaso
 	}
 	
 	ArrayList<Estado> recuperaSolucion(Nodo n, Arbol<Estado> arbol){
