@@ -4,15 +4,19 @@ public class Coordenada {
 	private int x;
 	private int y;
 	
+	public Coordenada(){//==> Actualizar
+		this.x = 0;
+		this.y = 0;
+	}
+	
 	public Coordenada(int x, int y){//==> Actualizar
 		this.x = x;
 		this.y = y;
 	}
 	
 	public Coordenada(Malla malla, Random generador){
-		Coordenada inicio = new Coordenada(-1, -1);
+		Coordenada inicio = new Coordenada();
 		do{
-			//Actualizar;
 			inicio.setX(generador.nextInt(malla.getNumFilas()));
 			inicio.setY(generador.nextInt(malla.getNumColumnas()));
 		}while (!inicio.esValido(malla.getTablero()));
