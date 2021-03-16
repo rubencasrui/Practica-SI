@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Random;
 import java.util.StringJoiner;
 
@@ -50,7 +51,7 @@ public class Malla {
 					fila.add("[#]");
 				else if (inicio.getX() == i && inicio.getY() == j)
 					fila.add("[I]");
-				else if (fin.getX() == i && fin.getY() ==j)
+				else if (fin.getX() == i && fin.getY() == j)
 					fila.add("[F]");
 				else
 					fila.add("[ ]");
@@ -84,5 +85,50 @@ public class Malla {
 	public Coordenada getFin() {
 		return fin;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((fin == null) ? 0 : fin.hashCode());
+		result = prime * result + ((inicio == null) ? 0 : inicio.hashCode());
+		result = prime * result + numColumnas;
+		result = prime * result + numFilas;
+		result = prime * result + (int) (semilla ^ (semilla >>> 32));
+		result = prime * result + Arrays.deepHashCode(tablero);
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Malla other = (Malla) obj;
+		if (fin == null) {
+			if (other.fin != null)
+				return false;
+		} else if (!fin.equals(other.fin))
+			return false;
+		if (inicio == null) {
+			if (other.inicio != null)
+				return false;
+		} else if (!inicio.equals(other.inicio))
+			return false;
+		if (numColumnas != other.numColumnas)
+			return false;
+		if (numFilas != other.numFilas)
+			return false;
+		if (semilla != other.semilla)
+			return false;
+		if (!Arrays.deepEquals(tablero, other.tablero))
+			return false;
+		return true;
+	}
+
+	
 	
 }

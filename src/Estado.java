@@ -36,5 +36,6 @@ public interface Estado {
 	 */
 	public boolean equals(Object obj);	
 	public int hashCode();
+	//public Coordenada getPosActual();
 	public Malla getMapa();
 }

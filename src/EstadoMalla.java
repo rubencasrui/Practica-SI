@@ -37,7 +37,7 @@ public class EstadoMalla implements Estado {
             //if (enRango(rastrOpciones) && rastrOpciones.esValido(mapa))// ## enRango(9)
             if (rastrOpciones != null) //Si se ha encontrado un estado en rango y que no hay obstáculos
             {
-                result.add(new EstadoMalla(this.mapa, rastrOpciones.getX(), rastrOpciones.getY());
+                result.add(new EstadoMalla(this.mapa, rastrOpciones.getX(), rastrOpciones.getY()));
             }
         }
         return result;
@@ -48,7 +48,6 @@ public class EstadoMalla implements Estado {
 	 * @return coste del arco que conecta el estado actual con el estado e2
 	 */
 	public int coste(Estado e2){
-        int fila, columna, resultado;
         
         //restar fila actual con el objetivo
         //restar columna actual con el objetivo
@@ -61,21 +60,23 @@ public class EstadoMalla implements Estado {
 	 * @return estimaci�n heur�stica del estado actual al objetivo
 	 */
 	public int h(Estado objetivo){//¿?
-        // return this.mapa.getInicio().distancia(objetivo.getMapa().getFin()); ??
+        return this.posicionActual.distancia(objetivo.getMapa().getFin());
+        //return this.posicionActual.distancia(objetivo.getPosActual);
 
-
-        //return abs (posicionActual.getX-mapa.getFin().x)+ abs (posicionActual.getY()-mapa.getFin().y);
-
-		return 0;
     }
 	
 	/**
 	 * Muestra el estado de forma legible por pantalla
 	 */
-	public void ver();{
+	public void ver(){
         System.out.println(mapa.toString());
     }
 	
+    @Override
+    public Malla getMapa()
+    {
+        return this.mapa;
+    }
 	/**
 	 * Los m�todos equals y hashcode son necesarios para poder utilizar los estados
 	 * como clave en un HashMap
@@ -92,52 +93,59 @@ public class EstadoMalla implements Estado {
 
 	
 	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((mapa == null) ? 0 : mapa.hashCode());
-		result = prime * result + ((posicionActual == null) ? 0 : posicionActual.hashCode());
-		return result;
-	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		EstadoMalla other = (EstadoMalla) obj;
-		if (mapa == null) {
-			if (other.mapa != null)
-				return false;
-		} else if (!mapa.equals(other.mapa))
-			return false;
-		if (posicionActual == null) {
-			if (other.posicionActual != null)
-				return false;
-		} else if (!posicionActual.equals(other.posicionActual))
-			return false;
-	}
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + g;
+        result = prime * result + h;
+        result = prime * result + ((mapa == null) ? 0 : mapa.hashCode());
+        result = prime * result + ((posicionActual == null) ? 0 : posicionActual.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        EstadoMalla other = (EstadoMalla) obj;
+        if (g != other.g)
+            return false;
+        if (h != other.h)
+            return false;
+        if (mapa == null) {
+            if (other.mapa != null)
+                return false;
+        } else if (!mapa.equals(other.mapa))
+            return false;
+        if (posicionActual == null) {
+            if (other.posicionActual != null)
+                return false;
+        } else if (!posicionActual.equals(other.posicionActual))
+            return false;
+        return true;
+    }
+    
+    
 
 	
-
-    private String toString(){
-        return "Estado Mallla(Coordenadas = {"+posicionActual.getX()+", "+posicionActual.getY()"}; "+"G(n) = "+g+" F(n) = "+f")";
+    @Override
+    public String toString(){
+        return "Estado Mallla(Coordenadas = {"+posicionActual.getX()+", "+posicionActual.getY()+"}; "+"G(n) = "+g+"H(n) = "+this.posicionActual.distancia(mapa.getFin())+" F(n) = "+(g+h)+")";
     }
-			   
-    public Malla getMapa()
-   {
-	return this.mapa;
-   }
 
 
     //-----------------------------------------------------------------------------------------
     private boolean enRango(int x, int y, Malla map){
         boolean res = false;
         if ((x< map.getNumColumnas()) && x>-1)//fila
+        {
             if (y<map.getNumFilas() && y>-1)//columa
                 res = true;
+        }
 
         return res;
     }
@@ -162,9 +170,15 @@ public class EstadoMalla implements Estado {
                 if (enRango(x - 1, y, map) && !map.getTablero()[x-1][y])
                     result = new Coordenada(x - 1, y);
                 break;
+                
+            default:
+                System.out.println("Movimiento no válido");
+                break;
         }
         
         return result;
     }
+
+    
 	
 }
