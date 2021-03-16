@@ -54,14 +54,14 @@ public class EstadoMalla implements Estado {
         //restar columna actual con el objetivo
         //suma de valores absolutos de la dif de filas y columnas
 		
-        return 0;
+        return 1;
 	}
 
 	/**
 	 * @return estimaci�n heur�stica del estado actual al objetivo
 	 */
 	public int h(Estado objetivo){//¿?
-        // return this.getMapa().getInicio().distancia(objetivo.getMapa().getFin()); ??
+        // return this.mapa.getInicio().distancia(objetivo.getMapa().getFin()); ??
 
 
         //return abs (posicionActual.getX-mapa.getFin().x)+ abs (posicionActual.getY()-mapa.getFin().y);
@@ -125,6 +125,11 @@ public class EstadoMalla implements Estado {
     private String toString(){
         return "Estado Mallla(Coordenadas = {"+posicionActual.getX()+", "+posicionActual.getY()"}; "+"G(n) = "+g+" F(n) = "+f")";
     }
+			   
+    public Malla getMapa()
+   {
+	return this.mapa;
+   }
 
 
     //-----------------------------------------------------------------------------------------
