@@ -1,4 +1,3 @@
-import java.util.List;
 
 public abstract class Abiertos<E extends Estado> {
 
