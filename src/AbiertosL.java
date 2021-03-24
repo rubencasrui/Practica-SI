@@ -1,6 +1,6 @@
 import java.util.ArrayList.*;
 
-public class AbiertosLista<E extends Estado> extends Abiertos{
+public class AbiertosL<E extends Estado> extends Abiertos{
     private ArrayList<NodoAB> listaAbiertos;
 
 

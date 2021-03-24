@@ -1,13 +1,10 @@
-package practica2021a;
-
-
 /**
  * 
  * @author Lawrence Mandow
  * @date   2021-03-08
  * 
- * Nodo del árbol de búsqueda.
- * Se compone del estado, valor g, y el puntero a su nodo padre (null si es la raíz).
+ * Nodo del ï¿½rbol de bï¿½squeda.
+ * Se compone del estado, valor g, y el puntero a su nodo padre (null si es la raï¿½z).
  *
  */
 public class Nodo<E extends Estado>{

@@ -27,7 +27,7 @@ public class ArboL<Nodo<E extends Estado>> extends Arbol{
     }
 	
 	public void ver(){		
-        for (Nodo<E> l : lista)
+        for (Nodo<E> l : lista.iterator())
         {
             System.out.println(l.toString());
         }
